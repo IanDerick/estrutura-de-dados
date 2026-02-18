@@ -15,12 +15,13 @@ echo fibonacci(20);
 
 
 function fibonacci($n, &$memo = []) {
-    if ($n < 0) {
-        throw new Exception("Número inválido");
-    }
 
-    if ($n === 0) return 0;
-    if ($n === 1) return 1;
+    if ($n === 0){
+        return 0;
+    } 
+    if ($n === 1){ 
+        return 1;
+    }
 
     if (isset($memo[$n])) {
         return $memo[$n];

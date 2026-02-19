@@ -8,17 +8,14 @@ class Pilha {
         $this->tamanhoMaximo = $tamanhoMaximo;
     }
 
-    // Verifica se está vazia
     public function isEmpty() {
         return empty($this->itens);
     }
 
-    // Verifica se está cheia
     public function isFull() {
         return count($this->itens) == $this->tamanhoMaximo;
     }
 
-    // Empilhar (push)
     public function push($valor) {
         if ($this->isFull()) {
             return "Pilha cheia!";
@@ -27,7 +24,6 @@ class Pilha {
         return "Elemento '$valor' inserido.";
     }
 
-    // Desempilhar (pop)
     public function pop() {
         if ($this->isEmpty()) {
             return "Pilha vazia!";
@@ -35,7 +31,6 @@ class Pilha {
         return array_pop($this->itens);
     }
 
-    // Visualizar topo
     public function top() {
         if ($this->isEmpty()) {
             return null;

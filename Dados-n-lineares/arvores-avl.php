@@ -1,8 +1,5 @@
 <?php
 
-// =======================
-// Classe do Nó AVL
-// =======================
 class NoAVL {
     public $valor;
     public $esquerda;
@@ -17,15 +14,9 @@ class NoAVL {
     }
 }
 
-// =======================
-// Classe Árvore AVL
-// =======================
 class ArvoreAVL {
     private $raiz = null;
 
-    // =======================
-    // Funções utilitárias
-    // =======================
     private function altura($no) {
         return $no ? $no->altura : 0;
     }
@@ -41,9 +32,6 @@ class ArvoreAVL {
         );
     }
 
-    // =======================
-    // Rotações
-    // =======================
     private function rotacaoDireita($y) {
         $x = $y->esquerda;
         $t2 = $x->direita;
@@ -70,9 +58,6 @@ class ArvoreAVL {
         return $y;
     }
 
-    // =======================
-    // INSERÇÃO
-    // =======================
     public function inserir($valor) {
         $this->raiz = $this->inserirRec($this->raiz, $valor);
     }
@@ -87,30 +72,25 @@ class ArvoreAVL {
         } elseif ($valor > $no->valor) {
             $no->direita = $this->inserirRec($no->direita, $valor);
         } else {
-            return $no; // valores duplicados não são permitidos
+            return $no;
         }
 
         $this->atualizarAltura($no);
         $balance = $this->fatorBalanceamento($no);
 
-        // Casos de rotação
-        // Esquerda-Esquerda
         if ($balance > 1 && $valor < $no->esquerda->valor) {
             return $this->rotacaoDireita($no);
         }
 
-        // Direita-Direita
         if ($balance < -1 && $valor > $no->direita->valor) {
             return $this->rotacaoEsquerda($no);
         }
 
-        // Esquerda-Direita
         if ($balance > 1 && $valor > $no->esquerda->valor) {
             $no->esquerda = $this->rotacaoEsquerda($no->esquerda);
             return $this->rotacaoDireita($no);
         }
 
-        // Direita-Esquerda
         if ($balance < -1 && $valor < $no->direita->valor) {
             $no->direita = $this->rotacaoDireita($no->direita);
             return $this->rotacaoEsquerda($no);
@@ -119,9 +99,6 @@ class ArvoreAVL {
         return $no;
     }
 
-    // =======================
-    // REMOÇÃO
-    // =======================
     public function remover($valor) {
         $this->raiz = $this->removerRec($this->raiz, $valor);
     }
@@ -135,11 +112,9 @@ class ArvoreAVL {
             $no->direita = $this->removerRec($no->direita, $valor);
         } else {
 
-            // Nó com um ou nenhum filho
             if ($no->esquerda === null || $no->direita === null) {
                 $no = $no->esquerda ?? $no->direita;
             } else {
-                // Nó com dois filhos
                 $menor = $this->menorValor($no->direita);
                 $no->valor = $menor->valor;
                 $no->direita = $this->removerRec($no->direita, $menor->valor);
@@ -151,7 +126,6 @@ class ArvoreAVL {
         $this->atualizarAltura($no);
         $balance = $this->fatorBalanceamento($no);
 
-        // Rebalanceamento
         if ($balance > 1 && $this->fatorBalanceamento($no->esquerda) >= 0) {
             return $this->rotacaoDireita($no);
         }
@@ -180,9 +154,6 @@ class ArvoreAVL {
         return $no;
     }
 
-    // =======================
-    // PERCURSO IN-ORDER
-    // =======================
     public function inOrder() {
         $this->inOrderRec($this->raiz);
         echo PHP_EOL;
@@ -197,12 +168,9 @@ class ArvoreAVL {
     }
 }
 
-// =======================
-// TESTE
-// =======================
 $arvore = new ArvoreAVL();
 
-$valores = [10, 20, 30, 40, 50, 25];
+$valores = [1, 2, 3, 4, 5, 10];
 
 foreach ($valores as $v) {
     $arvore->inserir($v);
@@ -211,9 +179,9 @@ foreach ($valores as $v) {
 echo "In-Order após inserções:\n";
 $arvore->inOrder();
 
-$arvore->remover(40);
+$arvore->remover(4);
 
-echo "In-Order após remoção do 40:\n";
+echo "In-Order após remoção do 4:\n";
 $arvore->inOrder();
 
 ?>

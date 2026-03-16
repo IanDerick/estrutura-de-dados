@@ -14,7 +14,6 @@ function hashString($str, $tamanho = 100) {
     return $hash;
 }
 
-// Gerar dados
 $dados = [];
 for ($i = 0; $i < N; $i++) {
     $dados[] = "palavra" . $i;
@@ -22,13 +21,11 @@ for ($i = 0; $i < N; $i++) {
 
 $indices = array_fill(0, TAMANHO, 0);
 
-// Distribuição
 foreach ($dados as $d) {
     $indice = hashString($d);
     $indices[$indice]++;
 }
 
-// Contar colisões
 $colisoes = 0;
 foreach ($indices as $qtd) {
     if ($qtd > 1) {
@@ -36,7 +33,6 @@ foreach ($indices as $qtd) {
     }
 }
 
-// Exibir resultado
 echo "Total de elementos: " . N . "\n";
 echo "Tamanho tabela: " . TAMANHO . "\n";
 echo "Colisões: $colisoes\n";

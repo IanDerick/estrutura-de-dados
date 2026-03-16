@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Fila e Pilha</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Fila e Pilha</h1>
+
+<!-- FILA -->
+<h2>Fila de Impressão (FIFO)</h2>
+
+<input type="text" id="doc" placeholder="Nome do documento">
+<button onclick="adicionar()">Adicionar</button>
+<button onclick="imprimir()">Imprimir</button>
+
+<div class="box">
+<ul id="fila"></ul>
+</div>
+
+
+<!-- PILHA -->
+<h2>Navegação (Pilha - LIFO)</h2>
+
+<button onclick="visitar('Página A')">Página A</button>
+<button onclick="visitar('Página B')">Página B</button>
+<button onclick="visitar('Página C')">Página C</button>
+<button onclick="voltar()">Voltar</button>
+
+<div class="box">
+<p>Página atual: <span id="atual">Nenhuma</span></p>
+
+<p>Pilha:</p>
+<ul id="pilha"></ul>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
